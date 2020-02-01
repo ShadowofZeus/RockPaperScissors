@@ -1,0 +1,66 @@
+body{
+	margin: 20px  8px 20px;
+	background-color: #7FDBFF;
+}
+
+.container{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.reset{
+	padding-bottom: 10px;
+	margin: 10px;
+}
+
+.main-heading{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.buttons{
+	display: flex;
+	justify-content: space-around;
+
+}
+
+.button-prop{
+	font-size: 16px;
+	text-align: center;
+	padding: 8px 10px;
+	border-radius: 6px;
+}
+
+.button-prop:hover{
+	background-color: white;
+}
+
+#rock{
+	background-color: #DDDDDD;
+}
+
+#paper{
+	background-color: #01FF70;
+}
+
+#scissors{
+	background-color: #FF851B;
+}
+
+#startbutton{
+	background-color: #F012BE;
+}
+
+.leaderboard{
+	//display: none;
+}
+
+#resetbtn{
+	background-color: #FFDC00;
+;
+}
