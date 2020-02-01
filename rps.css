@@ -11,6 +11,11 @@ body{
 
 }
 
+.reset{
+	padding-bottom: 10px;
+	margin: 10px;
+}
+
 .main-heading{
 	display: flex;
 	flex-direction: column;
@@ -49,4 +54,13 @@ body{
 
 #startbutton{
 	background-color: #F012BE;
+}
+
+.leaderboard{
+	//display: none;
+}
+
+#resetbtn{
+	background-color: #FFDC00;
+;
 }

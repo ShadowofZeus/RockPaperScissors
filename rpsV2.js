@@ -1,3 +1,15 @@
+const rock = document.getElementById('rock');
+const paper = document.getElementById('paper');
+const scissors = document.getElementById('scissors');
+const startbtn =document.getElementById("startbutton");
+const resetbtn = document.getElementById('resetbtn');
+const scoreVar = document.getElementsByTagName('p');
+//const computerchoice = document.getElementsByTagName('p');
+const ladder = document.getElementById('leaderboard');
+const fresult = document.createElement('p');
+let humanscore =0;
+let compscore =0;
+ladder.appendChild(fresult);
 let imgcounter = 0;
 let imageArray = [];
 let slidetime = 3000;
@@ -13,19 +25,55 @@ function slideshow()
 	if(imgcounter<imageArray.length-1)
 	{
 		imgcounter++;
-		console.log(imageArray);
+		//console.log(imageArray);
 	}
 	else
 	{
 		imgcounter=0;
 	}
 	setTimeout("slideshow()",slidetime);
+
+	//initialiseEventListeners();
 }
+
+function startGame()
+{
+	alert('Computer has played. Please select your choice:');
+	//console.log('Im stuck here!');
+	//OneRound(humanchoice[5].textContent,computerchoice[3].textContent);
+}
+
+rock.addEventListener('click', (e) => {			//if rock is clicked - input rock in function + computers choice!
+	e.stopPropagation()
+	OneRound('rock',computerPlay());
+});
+
+paper.addEventListener('click', (e) => {
+	e.stopPropagation()
+	OneRound('paper',computerPlay());
+});
+
+scissors.addEventListener('click', (e) => {
+	e.stopPropagation()
+	OneRound('scissors',computerPlay());
+});
+
+startbtn.addEventListener('click', (e) => {
+	e.stopPropagation()
+	startGame();
+});
+
+resetbtn.addEventListener('click', (e) => {
+	e.stopPropagation()
+	resetScores();
+});
+
 
 function computerPlay()
 {
-
-   const cplay = Math.floor(Math.random() * Math.floor(3));
+	const compchoice = document.getElementsByTagName('p');
+	//compchoice[].textContent = '';
+   	const cplay = Math.floor(Math.random() * Math.floor(3));
 
    switch (cplay) 
    {
@@ -33,76 +81,97 @@ function computerPlay()
 	    return 'rock';
 	    break;
 	  case 1:
-	    return 'paper';
+	    return 'paper';;
 	    break;
 
 	  case 2:
-	    return 'scissors';
+	    return 'scissors';;
 	    break;
 
 	  default:
-	    console.log('Invalid Inputrrock');
+	    console.log('Invalid Input!');
 	    break;
 	}
 
 }
 
+function writeUp()
+{
+	//scoreVar[3] is computer
+	//scoreVar[5] is human
+	//console.log(compscore,humanscore);
+	//console.log(typeof humanscore);
+	scoreVar[3].textContent = `${compscore}`;
+	scoreVar[5].textContent = `${humanscore}`;
+
+}
+
 function OneRound(playerSelection,computerSelection)
 {
-
+	console.log(playerSelection,computerSelection);
+	//alert("called with " + playerSelection + " and " + computerSelection);
 	if ((playerSelection ==='rock') && (computerSelection === 'rock'))
 	{
-		//console.log('This is a tie amigos - shame');
-		return 'draw';
+		fresult.textContent = 'This is a tie amigos - shame';
+		compscore++,humanscore++;
+		writeUp();
 	
 	}
 
 	else if ((playerSelection === 'rock') && (computerSelection === 'paper'))
 	{
-		//console.log('computer-amigo WINS!');
-		return 'computer';
+		fresult.textContent = 'computer-amigo WINS!';
+		compscore++;
+		writeUp();
 	}
 
 	else if ((playerSelection === 'rock') && (computerSelection === 'scissors'))
 	{
-		//console.log('human-amigo WINS!');
-		return 'human';
+		fresult.textContent ='human-amigo WINS!';
+		humanscore++;
+		writeUp();
 	}
 
 	else if ((playerSelection === 'paper') && (computerSelection === 'rock'))
 	{
-		//console.log('human-amigo WINS!');
-		return 'human';
+		fresult.textContent ='human-amigo WINS!';
+		humanscore++;
+		writeUp();
 	}
 
 	else if ((playerSelection === 'paper') && (computerSelection === 'paper'))
 	{
-		//console.log('This is a tie amigos - shame');
-		return 'draw';
+		fresult.textContent ='This is a tie amigos - shame';
+		compscore++,humanscore++;
+		writeUp();
 	}
 
 	else if ((playerSelection === 'paper') && (computerSelection === 'scissors'))
 	{
-		//console.log('computer-amigo WINS!');
-		return 'computer';
+		fresult.textContent ='computer-amigo WINS!';
+		compscore++;
+		writeUp();
 	}
 
 	else if ((playerSelection === 'scissors') && (computerSelection === 'rock'))
 	{
-		//console.log('computer-amigo WINS!');
-		return 'computer';
+		fresult.textContent ='computer-amigo WINS!';
+		compscore++;
+		writeUp();
 	}
 
 	else if ((playerSelection === 'scissors') && (computerSelection === 'paper'))
 	{
-		//console.log('human-amigo WINS!!');
-		return 'human';
+		fresult.textContent ='human-amigo WINS!!';
+		humanscore++;
+		writeUp();
 	}
 
 	else if ((playerSelection === 'scissors') && (computerSelection === 'scissors'))
 	{
-		//console.log('This is a tie amigos - shame');
-		return 'draw';
+		fresult.textContent ='This is a tie amigos - shame';
+		compscore++,humanscore++;
+		writeUp();
 	}
 
 	else 
@@ -111,66 +180,18 @@ function OneRound(playerSelection,computerSelection)
 	}
 }
 
-function gameFive(rounds=5)
+function resetScores()
 {
-	let human = 0;
-	let computer = 0;
-	textArray = ['Round-1','Round-1','Round-1',];
-
-	for(i=0; i<rounds; i++)
-	{
-		const value_comp = computerPlay();
-		const value_human = String(prompt('Select either rock,paper or scissors please: '));   //making sure its a string
-		const valueh_lower = value_human.toLowerCase();
-		console.log(valueh_lower); 																//chekcing code credibility
-		console.log(value_comp);																//chekcing code credibility
-		billboard = OneRound(valueh_lower,value_comp);
-
-		switch (billboard) 
-		{
-		  case 'draw':
-		  	human++;
-		  	computer++;
-		  	console.log(`Round-${i+1} Results:`);
-		    console.log(`Human: ${human} and Computer: ${computer}`);
-		    break;
-		  case 'computer':
-		    computer++;
-		    console.log(`Round-${i+1} Results:`);
-		    console.log(`Human: ${human} and Computer: ${computer}`);
-		    break;
-		  case 'human':
-		    human++;
-		    console.log(`Round-${i+1} Results:`);
-		    console.log(`Human: ${human} and Computer: ${computer}`);
-		    break;
-		   
-		  default:
-		    console.log('No one is winning today');
-		    break;
-		}
-	}
-
-	if(human>computer)
-	{
-		
-		alert('Human is KING!!');
-	}
-
-	else if(computer>human)
-	{
-		
-		alert('Computer is KING!!');
-	}
-
-	else
-	{
-		alert('No winner due to invalid input from users')
-	}
+	humanscore=0;
+	compscore=0;
+	writeUp();
+	fresult.textContent = 'Game scores have been reset';
+	console.log(humanscore,compscore);
 }
 
-window.onload = slideshow;
-//document.getElementById("begin").onclick = gameFive;
+
+window.onload = slideshow();
+
 
 										
 

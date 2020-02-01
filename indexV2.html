@@ -14,26 +14,29 @@
 		</div>
 		
 		<div class="startgame">
-			<button id="startbutton" class="button-prop" type="button" onclick="gameFive()">Start the Game</button>
+			<button id="startbutton" class="button-prop" type="button">Start the Game</button>
 		</div>
 		
 		
 		<h2>Leader ScoreBoard</h2>
 
 		<div class="scores">
-			<div>
-				<p>Human Score: 0</p> 
-				<p>Computer Score: 0</p>
+			<div id="leaderboard">
+				<p>Computer Score:</p><p>0</p> 
+				<p>Human Score:</p><p>0</p>
 			</div>
 			<div>
 				<p><strong>Human, select your options from the below buttons:</strong></p>
 			</div>
 
 			<div class="buttons">
-				<button id="rock" class="button-prop">Rock</button>
-				<button id="paper" class="button-prop">Paper</button>
-				<button id="scissors" class="button-prop">Scissors</button>
+				<button id="rock" class="button-prop game-btns">Rock</button>
+				<button id="paper" class="button-prop game-btns">Paper</button>
+				<button id="scissors" class="button-prop game-btns">Scissors</button>
 			</div>
+		</div>
+		<div class="reset">
+			<button id="resetbtn" class="button-prop">Reset the Game</button>
 		</div>
 	</div>
 	
